@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 
 function App(): JSX.Element {
@@ -7,7 +8,26 @@ function App(): JSX.Element {
             <header className="App-header">
                 UD CISC275 with React Hooks and TypeScript
             </header>
-            <h1>by Trevor</h1>
+            <br></br>
+            <Container>
+                <Row>
+                    <Col>
+                        <h4>Cool facts about Trevor:</h4>
+                        <ul>
+                            <li>#1 Juggler in North America</li>
+                            <li>Borderline Illiterate</li>
+                            <li>Scared of Knives</li>
+                        </ul>
+                    </Col>
+                    <Col>
+                        <img
+                            width="60%"
+                            src={process.env.PUBLIC_URL + "/chickpea.JPG"}
+                            alt="Chickpea the Hedgehog"
+                        />
+                    </Col>
+                </Row>
+            </Container>
             <p>Hello World!</p>
             <br></br>
         </div>
