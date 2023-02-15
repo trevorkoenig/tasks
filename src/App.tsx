@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "./App.css";
 
 function App(): JSX.Element {
@@ -8,7 +8,7 @@ function App(): JSX.Element {
             <header className="App-header">
                 UD CISC275 with React Hooks and TypeScript
             </header>
-            <br></br>
+            <p className="">Trevor&#39;s Snazzy New Webpage</p>
             <Container>
                 <Row>
                     <Col>
@@ -20,6 +20,11 @@ function App(): JSX.Element {
                         </ul>
                     </Col>
                     <Col>
+                        <Button onClick={() => console.log("Hello World!")}>
+                            Log Hello World
+                        </Button>
+                    </Col>
+                    <Col>
                         <img
                             width="60%"
                             src={process.env.PUBLIC_URL + "/chickpea.JPG"}
@@ -27,8 +32,19 @@ function App(): JSX.Element {
                         />
                     </Col>
                 </Row>
+                <Row>
+                    <Col className="fillCol">
+                        <div className="redBox">
+                            <br></br>
+                        </div>
+                    </Col>
+                    <Col className="fillCol">
+                        <div className="redBox">
+                            <br></br>
+                        </div>
+                    </Col>
+                </Row>
             </Container>
-            <p>Hello World!</p>
             <br></br>
         </div>
     );
