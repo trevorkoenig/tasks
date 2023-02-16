@@ -8,7 +8,7 @@ function App(): JSX.Element {
             <header className="App-header">
                 UD CISC275 with React Hooks and TypeScript
             </header>
-            <p className="">Trevor&#39;s Snazzy New Webpage</p>
+            <p>Trevor&#39;s Snazzy New Webpage</p>
             <Container>
                 <Row>
                     <Col>
