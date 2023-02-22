@@ -80,7 +80,7 @@ export function toShortForm(question: Question): string {
  */
 export function toMarkdown(question: Question): string {
     if (question.type === "multiple_choice_question") {
-        const optionstring: string = "-" + question.options.join("\n-");
+        const optionstring: string = "- " + question.options.join("\n- ");
         return `# ${question.name}
 ${question.body}
 ${optionstring}`;
@@ -95,7 +95,8 @@ ${question.body}`;
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const newq: Question = { ...question, name: newName };
+    return newq;
 }
 
 /**
