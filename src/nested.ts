@@ -1,3 +1,4 @@
+import { rename } from "fs";
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { makeBlankQuestion } from "./objects";
@@ -174,7 +175,11 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const renamedQuestions: Question[] = questions.map(
+        (q: Question): Question =>
+            q.id === targetId ? { ...q, name: newName } : q
+    );
+    return renamedQuestions;
 }
 
 /***
@@ -189,7 +194,20 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const retypedQuestions: Question[] = questions.map(
+        (q: Question): Question =>
+            q.id === targetId
+                ? {
+                      ...q,
+                      type: newQuestionType,
+                      options:
+                          newQuestionType !== "multiple_choice_question"
+                              ? []
+                              : q.options
+                  }
+                : q
+    );
+    return retypedQuestions;
 }
 
 /**
@@ -208,7 +226,20 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const modified: Question[] = questions.map((q: Question): Question => {
+        if (q.id === targetId) {
+            const newq: Question = { ...q, options: [...q.options] };
+            if (targetOptionIndex === -1) {
+                newq.options.push(newOption);
+                return newq;
+            } else {
+                newq.options[targetOptionIndex] = newOption;
+                return newq;
+            }
+        }
+        return q;
+    });
+    return modified;
 }
 
 /***
