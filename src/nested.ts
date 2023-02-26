@@ -6,7 +6,27 @@ import { Question, QuestionType } from "./interfaces/question";
  * that are `published`.
  */
 export function getPublishedQuestions(questions: Question[]): Question[] {
-    return [];
+    const published: Question[] = questions.filter(
+        (q: Question): boolean => q.published
+    );
+    return published;
+}
+
+/**
+ * Helper function to deep copy questions
+ */
+function deepCopyQuestion(question: Question): Question {
+    const newq: Question = {
+        id: question.id,
+        name: question.name,
+        type: question.type,
+        body: question.body,
+        options: question.options,
+        expected: question.expected,
+        points: question.points,
+        published: question.published
+    };
+    return newq;
 }
 
 /**
@@ -15,7 +35,11 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    const nonempty: Question[] = questions.filter(
+        (q: Question): boolean =>
+            !(q.body === "" && q.expected === "" && q.options.length === 0)
+    );
+    return nonempty;
 }
 
 /***
@@ -26,7 +50,10 @@ export function findQuestion(
     questions: Question[],
     id: number
 ): Question | null {
-    return null;
+    const correctIDs: Question[] = questions.filter(
+        (q: Question): boolean => q.id === id
+    );
+    return correctIDs.length > 0 ? correctIDs[0] : null;
 }
 
 /**
@@ -34,7 +61,10 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const purged: Question[] = questions.filter(
+        (q: Question): boolean => q.id !== id
+    );
+    return purged;
 }
 
 /***
@@ -42,21 +72,33 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const questionNames: string[] = questions.map(
+        (q: Question): string => q.name
+    );
+    return questionNames;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    const sum: number = questions.reduce(
+        (totalsofar: number, q: Question): number => totalsofar + q.points,
+        0
+    );
+    return sum;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    const publishedsum: number = questions.reduce(
+        (totalsofar: number, q: Question): number =>
+            q.published ? totalsofar + q.points : totalsofar,
+        0
+    );
+    return publishedsum;
 }
 
 /***
