@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -10,23 +11,6 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
         (q: Question): boolean => q.published
     );
     return published;
-}
-
-/**
- * Helper function to deep copy questions
- */
-function deepCopyQuestion(question: Question): Question {
-    const newq: Question = {
-        id: question.id,
-        name: question.name,
-        type: question.type,
-        body: question.body,
-        options: question.options,
-        expected: question.expected,
-        points: question.points,
-        published: question.published
-    };
-    return newq;
 }
 
 /**
@@ -134,7 +118,10 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    const answers: Answer[] = questions.map((q: Question): Answer => {
+        return { questionId: q.id, text: "", submitted: false, correct: false };
+    });
+    return answers;
 }
 
 /***
@@ -142,7 +129,10 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    const published: Question[] = questions.map((q: Question): Question => {
+        return { ...q, published: true };
+    });
+    return published;
 }
 
 /***
@@ -150,7 +140,10 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    return (
+        !questions.length ||
+        questions.every((q: Question): boolean => q.type === questions[0].type)
+    );
 }
 
 /***
@@ -164,7 +157,11 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    const newarr: Question[] = [
+        ...questions,
+        makeBlankQuestion(id, name, type)
+    ];
+    return newarr;
 }
 
 /***
