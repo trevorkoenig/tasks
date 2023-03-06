@@ -12,5 +12,32 @@ export function d6(): number {
 }
 
 export function TwoDice(): JSX.Element {
-    return <div>Two Dice</div>;
+    const [left, setLeft] = useState<number>(1);
+    const [right, setRight] = useState<number>(6);
+
+    function rollRight() {
+        setRight(d6());
+    }
+
+    function rollLeft() {
+        setLeft(d6());
+    }
+
+    return (
+        <div>
+            <span>
+                <Button onClick={rollLeft}>Roll Left</Button>
+            </span>
+            <span>
+                <Button onClick={rollRight}>Roll Right</Button>
+            </span>
+            <p>
+                Left: <span data-testid="left-die">{left}</span> Right:{" "}
+                <span data-testid="right-die">{right}</span>
+            </p>
+            {left === right && (
+                <p>You {left === 1 ? <span>Lose</span> : <span>Win</span>}!</p>
+            )}
+        </div>
+    );
 }
