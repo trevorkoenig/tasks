@@ -25,6 +25,13 @@ export function CycleHoliday(): JSX.Element {
         Christmas: "New Years Eve",
         "New Years Eve": "Earth Day"
     };
+    const emoji: Record<Holiday, string> = {
+        Christmas: "🎄",
+        "Earth Day": "🌎",
+        Halloween: "🎃",
+        "New Years Eve": "🎉",
+        Thanksgiving: "🦃"
+    };
 
     return (
         <div>
@@ -34,7 +41,7 @@ export function CycleHoliday(): JSX.Element {
             <Button onClick={() => setHoliday(chronological[holiday])}>
                 Advance By Year
             </Button>
-            <p>{holiday}</p>
+            <p>Holiday: {emoji[holiday]}</p>
         </div>
     );
 }
