@@ -6,7 +6,7 @@ export function RevealAnswer(): JSX.Element {
     return (
         <div>
             <Button onClick={() => setAnswerVisibility(!answerVisibility)}>
-                {answerVisibility ? "Hide Answer" : "Show Answer"}
+                Reveal Answer
             </Button>
             <p>Answer: {answerVisibility && <span>42</span>}</p>
         </div>
