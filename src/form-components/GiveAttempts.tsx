@@ -12,17 +12,21 @@ export function GiveAttempts(): JSX.Element {
                 <Form.Control
                     type="number"
                     value={additionalAttempts}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        const num = parseInt(event.target.value);
-                        setAdditionalAttempts(isNaN(num) ? 0 : num);
-                    }}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                        setAdditionalAttempts(parseInt(event.target.value))
+                    }
                 />
             </Form.Group>
             <Row>
                 <Col>
                     <Button
                         onClick={() => {
-                            setAttemptsLeft(attemptsLeft + additionalAttempts);
+                            setAttemptsLeft(
+                                attemptsLeft +
+                                    (isNaN(additionalAttempts)
+                                        ? 0
+                                        : additionalAttempts)
+                            );
                             setAdditionalAttempts(0);
                         }}
                     >
