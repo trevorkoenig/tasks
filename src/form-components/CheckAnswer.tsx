@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Container } from "react-bootstrap";
 
 export function CheckAnswer({
     expectedAnswer
@@ -15,17 +15,19 @@ export function CheckAnswer({
     return (
         <div>
             <h3>Check Answer</h3>
-            <Form.Group controlId="guess" as={Row}>
-                <Form.Label column sm={1}>
-                    Answer:
-                </Form.Label>
-                <Col sm={9}>
-                    <Form.Control type="text" onChange={checkAnswer} />
-                </Col>
-                <Col sm={2}>
-                    <div>{correct ? "✔️" : "❌"}</div>
-                </Col>
-            </Form.Group>
+            <Container>
+                <Form.Group controlId="guess" as={Row}>
+                    <Form.Label column sm={1}>
+                        Answer:
+                    </Form.Label>
+                    <Col sm={9}>
+                        <Form.Control type="text" onChange={checkAnswer} />
+                    </Col>
+                    <Col sm={2}>
+                        <div>{correct ? "✔️" : "❌"}</div>
+                    </Col>
+                </Form.Group>
+            </Container>
         </div>
     );
 }
