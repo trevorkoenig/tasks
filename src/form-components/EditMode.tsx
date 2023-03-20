@@ -11,7 +11,7 @@ export function EditMode(): JSX.Element {
             <h3>Edit Mode</h3>
             <Container>
                 <Row className="d-flex justify-content-center">
-                    <Col sm="auto">
+                    <Col sm={2}>
                         <Form.Check
                             className="mb-3"
                             type="switch"
