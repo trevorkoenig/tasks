@@ -16,10 +16,10 @@ export function CheckAnswer({
         <div>
             <h3>Check Answer</h3>
             <Form.Group controlId="guess" as={Row}>
-                <Form.Label column sm={2}>
-                    Answer
+                <Form.Label column sm={1}>
+                    Answer:
                 </Form.Label>
-                <Col sm={8}>
+                <Col sm={9}>
                     <Form.Control type="text" onChange={checkAnswer} />
                 </Col>
                 <Col sm={2}>
