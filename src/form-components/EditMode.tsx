@@ -10,9 +10,10 @@ export function EditMode(): JSX.Element {
         <div>
             <h3>Edit Mode</h3>
             <Container>
-                <Row>
-                    <Col>
+                <Row className="d-flex justify-content-center">
+                    <Col sm="auto">
                         <Form.Check
+                            className="mb-3"
                             type="switch"
                             id="is-edit-mode"
                             label="Edit Mode"
@@ -22,7 +23,7 @@ export function EditMode(): JSX.Element {
                             ) => setEditMode(event.target.checked)}
                         />
                     </Col>
-                    <Col>
+                    <Col sm={2}>
                         {editMode ? (
                             <Form.Group controlId="guess" as={Row}>
                                 <Form.Control
