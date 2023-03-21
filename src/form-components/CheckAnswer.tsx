@@ -15,15 +15,15 @@ export function CheckAnswer({
     return (
         <div>
             <h3>Check Answer</h3>
-            <Container>
+            <Container style={{ justifyContent: "center", display: "flex" }}>
                 <Form.Group controlId="guess" as={Row}>
-                    <Form.Label column sm={1}>
+                    <Form.Label column sm="auto">
                         Answer:
                     </Form.Label>
-                    <Col sm={9}>
+                    <Col sm="auto">
                         <Form.Control type="text" onChange={checkAnswer} />
                     </Col>
-                    <Col sm={2}>
+                    <Col sm="auto">
                         <div>{correct ? "✔️" : "❌"}</div>
                     </Col>
                 </Form.Group>
