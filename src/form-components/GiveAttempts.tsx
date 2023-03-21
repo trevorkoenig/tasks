@@ -7,21 +7,30 @@ export function GiveAttempts(): JSX.Element {
     return (
         <div>
             <h3>Give Attempts</h3>
-            <Container>
-                <Form.Group controlId="attempts">
-                    <Form.Label>Attempts remaining: {attemptsLeft}</Form.Label>
-                    <Form.Control
-                        type="number"
-                        value={additionalAttempts}
-                        onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                        ) =>
-                            setAdditionalAttempts(parseInt(event.target.value))
-                        }
-                    />
-                </Form.Group>
-                <Row>
-                    <Col>
+            <Container fluid="sm">
+                <Row style={{ justifyContent: "center" }}>
+                    <Col md={3}>
+                        <Form.Group controlId="attempts">
+                            <Form.Label>
+                                Attempts remaining: {attemptsLeft}
+                            </Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={additionalAttempts}
+                                onChange={(
+                                    event: React.ChangeEvent<HTMLInputElement>
+                                ) =>
+                                    setAdditionalAttempts(
+                                        parseInt(event.target.value)
+                                    )
+                                }
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <br></br>
+                <Row style={{ justifyContent: "center" }}>
+                    <Col sm="auto">
                         <Button
                             onClick={() => {
                                 setAttemptsLeft(
@@ -37,7 +46,7 @@ export function GiveAttempts(): JSX.Element {
                         </Button>
                     </Col>
 
-                    <Col>
+                    <Col sm="auto">
                         <Button
                             disabled={attemptsLeft === 0}
                             onClick={() => setAttemptsLeft(attemptsLeft - 1)}
